@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <title>Nuevo ingreso · FIMAZ</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #f0f4fa;
+        background-image: url("FIMAZ.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 16px;
+      }
+      .card {
+        max-width: 500px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 36px;
+        padding: 28px 24px;
+        box-shadow: 0 25px 50px -12px rgba(10, 42, 68, 0.25);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .logo-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .logo-img {
+        max-width: 150px;
+        height: auto;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #0a2a44;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: center; 
+      }
+      .instruction {
+        background: rgba(232, 240, 254, 0.8);
+        padding: 16px 18px;
+        border-radius: 24px;
+        margin-bottom: 28px;
+        border-left: 5px solid #1f6e6b;
+      }
+      .campo {
+        margin-bottom: 24px;
+      }
+      .campo label {
+        display: block;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #1b3b5c;
+        margin-bottom: 8px;
+        margin-left: 6px;
+        font-size: 0.85rem;
+      }
+      .input-group {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .input-group input {
+        flex: 1;
+        height: 54px;
+        border: 2px solid #d9e2ef;
+        border-radius: 20px;
+        padding: 0 18px;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+      .btn-s {
+        width: 60px;
+        height: 54px;
+        background: #1e3b5c;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+        box-shadow: 0 4px 0 #0f2336;
+        transition: 0.1s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn-s:active {
+        transform: translateY(3px);
+        box-shadow: 0 1px 0 #0f2336;
+      }
+      .btn-registrar {
+        width: 100%;
+        height: 54px;
+        background: #1e3b5c;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 15px;
+        box-shadow: 0 4px 0 #0f2336;
+        transition: 0.1s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        text-transform: uppercase;
+      }
+      .btn-registrar:active {
+        transform: translateY(3px);
+        box-shadow: 0 1px 0 #0f2336;
+      }
+      .btn-registrar:disabled {
+        background: #a5b5b4;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+      .resultado-busqueda {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f0f9ff;
+        border-radius: 24px;
+        border: 1px solid #bdd3f0;
+        display: none;
+        line-height: 1.6;
+      }
+      .resultado-busqueda p {
+        font-size: 1.1rem;
+        color: #0a2a44;
+        margin: 4px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .error-box {
+        background: #fff0f0;
+        border: 1px solid #f5c2c2;
+        padding: 15px;
+        border-radius: 20px;
+        color: #b02e2e;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nota {
+        margin-top: 24px;
+        text-align: center;
+        color: #8e9fb1;
+        border-top: 1px dashed #d2deed;
+        padding-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo-container">
+        <img src="logo_fimaz.jpg" alt="Logo FIMAZ" class="logo-img">
+      </div>
+
+      <h1><i class="fas fa-database"></i> Nuevo ingreso</h1>
+      
+      <p class="instruction">
+        <i class="fas fa-info-circle"></i> Ingrese folio o nombre del aspirante
+        para realizar la búsqueda.
+      </p>
+
+      <div class="campo">
+        <label><i class="fas fa-hashtag"></i> INGRESE FOLIO</label>
+        <div class="input-group">
+          <input type="text" id="folioInput" placeholder="Folio del aspirante" autocomplete="off" />
+          <button class="btn-s" id="folioBtn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label><i class="fas fa-user-graduate"></i> APELLIDO PATERNO</label>
+        <div class="input-group">
+          <input type="text" id="apellidoPInput" placeholder="Apellido paterno" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label><i class="fas fa-user-graduate"></i> APELLIDO MATERNO</label>
+        <div class="input-group">
+          <input type="text" id="apellidoMInput" placeholder="Apellido materno" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label><i class="fas fa-user-graduate"></i> NOMBRE</label>
+        <div class="input-group">
+          <input type="text" id="nombreInput" placeholder="Nombre" autocomplete="off" />
+          <button class="btn-s" id="nombreBtn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+      <div id="resultadoBusqueda" class="resultado-busqueda"></div>
+
+      <div class="nota">
+        <i class="fas fa-search"></i> Presione la <strong>lupa</strong> para buscar.
+      </div>
+    </div>
+
+    
+    <script>
+      (function () {
+        const folioInput = document.getElementById("folioInput");
+        const apellidoPInput = document.getElementById("apellidoPInput");
+        const apellidoMInput = document.getElementById("apellidoMInput");
+        const nombreInput = document.getElementById("nombreInput");
+        const folioBtn = document.getElementById("folioBtn");
+        const nombreBtn = document.getElementById("nombreBtn");
+        const resultadoDiv = document.getElementById("resultadoBusqueda");
+
+        function limpiarFormulario() {
+          folioInput.value = "";
+          apellidoPInput.value = "";
+          apellidoMInput.value = "";
+          nombreInput.value = "";
+        }
+
+        window.confirmarAsistencia = async function(folio, aula) {
+            const btn = document.getElementById('btnReg-' + folio);
+            if(btn) btn.disabled = true;
+
+            try {
+                const response = await fetch('registrar.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ folio: folio, aula: aula })
+                });
+                const json = await response.json();
+                
+                if (json.success) {
+                    alert("✅ " + json.message);
+                    resultadoDiv.style.display = "none";
+                    limpiarFormulario();
+                } else {
+                    alert("❌ " + json.message);
+                    if(btn) btn.disabled = false;
+                }
+            } catch (e) {
+                alert("Error de conexión al registrar.");
+                if(btn) btn.disabled = false;
+            }
+        };
+
+        function mostrarResultado(data, esError = false) {
+          resultadoDiv.style.display = "block";
+          if (esError) {
+            resultadoDiv.innerHTML = `
+              <div class="error-box">
+                <i class="fas fa-exclamation-triangle"></i> 
+                <span>${data || "No se encontraron resultados"}</span>
+              </div>`;
+            resultadoDiv.style.background = "transparent";
+            resultadoDiv.style.borderColor = "transparent";
+            return;
+          }
+
+          let html = "";
+          const items = Array.isArray(data) ? data : [data];
+
+          items.forEach((e) => {
+            html += `
+              <div style="margin-bottom: 15px; border-bottom: 1px solid #d2deed; padding-bottom: 10px;">
+                <p><strong>🔍 Estudiante encontrado</strong></p>
+                <p><i class="fas fa-id-card"></i> <strong>Folio:</strong> ${e.folio}</p>
+                <p><i class="fas fa-user-tag"></i> <strong>Nombre:</strong> ${e.nombre}</p>
+                <p><i class="fas fa-graduation-cap"></i> <strong>Carrera:</strong> ${e.carrera || "—"}</p>
+                <p><i class="fas fa-door-open"></i> <strong>Aula:</strong> ${e.aula || "—"} | <strong>Asiento:</strong> ${e.asiento || "—"}</p>
+                
+                <button class="btn-registrar" id="btnReg-${e.folio}" onclick="confirmarAsistencia('${e.folio}', '${e.aula}')">
+                    <i class="fas fa-check-circle"></i> REGISTRAR ASISTENCIA
+                </button>
+              </div>
+            `;
+          });
+
+          resultadoDiv.innerHTML = html;
+          resultadoDiv.style.background = "#f0f9ff";
+          resultadoDiv.style.borderColor = "#bdd3f0";
+        }
+
+        async function buscarFolio() {
+          const folio = folioInput.value.trim().toUpperCase();
+          if (!folio) return;
+          try {
+            const response = await fetch(`buscar.php?tipo=folio&valor=${encodeURIComponent(folio)}`);
+            const json = await response.json();
+            if (json.success) {
+              mostrarResultado(json.data);
+            } else {
+              mostrarResultado(json.message, true);
+            }
+          } catch (e) {
+            mostrarResultado("Error de conexión", true);
+          }
+        }
+
+        async function buscarNombre() {
+          const apP = apellidoPInput.value.trim().toUpperCase();
+          const apM = apellidoMInput.value.trim().toUpperCase();
+          const nom = nombreInput.value.trim().toUpperCase();
+
+          if (!apP || !nom) {
+            mostrarResultado("Debe ingresar al menos el Apellido Paterno y el Nombre.", true);
+            return;
+          }
+
+          try {
+            const params = new URLSearchParams({
+              tipo: "apellidos",
+              apellido_paterno: apP,
+              apellido_materno: apM,
+              nombre: nom,
+            });
+            const response = await fetch(`buscar.php?${params}`);
+            const json = await response.json();
+            if (json.success) {
+              mostrarResultado(json.data);
+            } else {
+              mostrarResultado(json.message, true);
+            }
+          } catch (e) {
+            mostrarResultado("Error de conexión", true);
+          }
+        }
+
+        folioBtn.addEventListener("click", buscarFolio);
+        nombreBtn.addEventListener("click", buscarNombre);
+
+        [folioInput, nombreInput, apellidoPInput, apellidoMInput].forEach((input) => {
+          input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              if (input.id === "folioInput") buscarFolio();
+              else buscarNombre();
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
